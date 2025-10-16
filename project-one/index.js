@@ -9,7 +9,7 @@ createServer((req, res) => {
     res.writeHead(200, { "Content-Type": "text/html" });
     res.end(html);
   } else if (req.url === "/favicon.ico") {
-    res.writeHead(200, { "Content-Type": "image/x-icon" });
+    res.writeHead(200, { "Content-Type": "image/vnd.microsoft.icon" });
     res.end(favicon);
   } else {
     res.writeHead(404, { "Content-Type": "text/plain" });
