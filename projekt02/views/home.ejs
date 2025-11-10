@@ -1,0 +1,25 @@
+<%- include('head.partial.ejs') %>
+<div class="container">
+  <h1>Polecenia Albumów Metalowych</h1>
+
+  <div class="section">
+    <h2>Dla Początkujących:</h2>
+    <ul>
+      <% albums.slice(0, 2).forEach(album => { %>
+        <li><a href="/album/<%= album.name %>"><%= album.title %></a></li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>Skomplikowane Ale Piękne:</h2>
+    <ul>
+      <% albums.slice(2).forEach(album => { %>
+        <li><a href="/album/<%= album.name %>"><%= album.title %></a></li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <a href="/about" class="about-link">O Stronie</a>
+</div>
+<%- include('foot.partial.ejs') %>

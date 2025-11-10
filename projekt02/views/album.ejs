@@ -1,0 +1,22 @@
+<%- include('head.partial.ejs') %>
+<div class="container">
+  <h1><%= album.title %></h1>
+
+  <div class="section album-details">
+    <p><strong>Data Wydania:</strong> <%= album.releaseDate %></p>
+    <p><strong>Całkowity Czas Trwania:</strong> <%= album.totalDuration %></p>
+    <p><strong>Opis:</strong> <%= album.description %></p>
+  </div>
+
+  <div class="section album-songs">
+    <h2>Piosenki:</h2>
+    <ul>
+      <% album.songs.forEach(song => { %>
+        <li><%= song %></li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <a href="/" class="back-link">Powrót do Poleceń</a>
+</div>
+<%- include('foot.partial.ejs') %>
