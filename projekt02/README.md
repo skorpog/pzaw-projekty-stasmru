@@ -11,7 +11,11 @@ Ten projekt to prosty serwer Express, który obsługuje dynamiczne widoki przy u
 
 1. Sklonuj lub pobierz projekt.
 2. Przejdź do katalogu projektu.
-3. Uruchom `npm install`.
+3. Uruchom:
+
+```
+npm install
+```
 
 ## Uruchamianie Serwera
 
