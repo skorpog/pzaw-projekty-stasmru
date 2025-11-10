@@ -83,6 +83,18 @@ li a:hover {
   color: #ff0000;
 }
 
+.spotify-link {
+  color: #1db954;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.spotify-link:hover {
+  color: #1ed760;
+  text-decoration: underline;
+}
+
 .album-songs {
   margin-top: 20px;
 }
