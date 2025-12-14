@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Black+Ops+One&display=swap');
+
+body {
+  font-family: 'Black Ops One', cursive;
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #000 0%, #0a0a0a 50%, #111 100%);
+  color: #C0C0C0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, rgba(192, 192, 192, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-family: 'Metal Mania', cursive;
+  color: #A8A8A8;
+  text-align: center;
+  font-size: 4em;
+  margin-bottom: 40px;
+  text-shadow: 0 0 20px rgba(168, 168, 168, 0.8), 2px 2px 4px rgba(0, 0, 0, 0.9);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-family: 'Metal Mania', cursive;
+  color: #A8A8A8;
+  font-size: 2.5em;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #A8A8A8;
+  padding-bottom: 10px;
+  text-shadow: 0 0 15px rgba(168, 168, 168, 0.6);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.section {
+  background: linear-gradient(145deg, rgba(20, 20, 20, 0.9) 0%, rgba(40, 40, 40, 0.9) 100%);
+  border: 1px solid #555;
+  border-radius: 15px;
+  padding: 30px;
+  margin-bottom: 30px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  position: relative;
+}
+
+.section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, #A8A8A8 50%, transparent 100%);
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+li {
+  background: linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%);
+  margin: 0;
+  padding: 20px;
+  border: 2px solid #666;
+  border-radius: 12px;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+li::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(168, 168, 168, 0.1), transparent);
+  transition: left 0.5s;
+}
+
+li:hover {
+  background: linear-gradient(145deg, #2a2a2a 0%, #3a3a3a 100%);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6), 0 0 20px rgba(168, 168, 168, 0.2);
+  border-color: #A8A8A8;
+}
+
+li:hover::before {
+  left: 100%;
+}
+
+li a {
+  color: #C0C0C0;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  transition: all 0.3s ease;
+  font-size: 1.1em;
+}
+
+li a:hover {
+  color: #A8A8A8;
+  text-shadow: 0 0 10px rgba(168, 168, 168, 0.5);
+}
+
+.album-details p {
+  margin: 12px 0;
+  line-height: 1.7;
+  color: #B0B0B0;
+}
+
+.album-details strong {
+  color: #A8A8A8;
+  text-shadow: 0 0 5px rgba(168, 168, 168, 0.3);
+}
+
+.spotify-link {
+  color: #1db954;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.spotify-link:hover {
+  color: #1ed760;
+  text-decoration: underline;
+  text-shadow: 0 0 10px rgba(29, 185, 84, 0.5);
+}
+
+.album-songs {
+  margin-top: 25px;
+}
+
+.album-songs ul {
+  display: block;
+  grid-template-columns: none;
+  gap: 8px;
+}
+
+.album-songs li {
+  background: linear-gradient(145deg, #0f0f0f 0%, #1f1f1f 100%);
+  border: 1px solid #444;
+  padding: 10px 15px;
+  margin: 5px 0;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  color: #A0A0A0;
+}
+
+.album-songs li:hover {
+  background: linear-gradient(145deg, #1f1f1f 0%, #2f2f2f 100%);
+  transform: translateX(5px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.back-link, .add-album-link, .edit-link, .delete-link, button, input[type="submit"] {
+  display: inline-block;
+  padding: 12px 25px;
+  background: linear-gradient(145deg, #666 0%, #888 100%);
+  color: #000;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  border: 1px solid #999;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin-left: 10px;
+  width: auto;
+  min-width: 80px;
+}
+
+.back-link:hover, .add-album-link:hover, .edit-link:hover, .delete-link:hover, button:hover, input[type="submit"]:hover {
+  background: linear-gradient(145deg, #888 0%, #AAA 100%);
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), 0 0 15px rgba(168, 168, 168, 0.3);
+}
+
+.back-link {
+  margin-top: 30px;
+}
+
+.add-album-link {
+  margin-bottom: 20px;
+}
+
+.about-link {
+  display: block;
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  background: linear-gradient(145deg, rgba(40, 40, 40, 0.8) 0%, rgba(60, 60, 60, 0.8) 100%);
+  border: 2px solid #A8A8A8;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #A8A8A8;
+  font-weight: bold;
+  font-size: 1.2em;
+  transition: all 0.4s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.about-link:hover {
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.5em;
+  }
+
+  h2 {
+    font-size: 1.8em;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .section {
+    padding: 20px;
+  }
+
+  ul {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  li {
+    padding: 15px;
+  }
+
+  .back-link, .add-album-link, .action-button, button {
+    padding: 10px 20px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1.5em;
+  }
+
+  .section {
+    padding: 15px;
+  }
+
+  li {
+    padding: 12px;
+  }
+}
+}

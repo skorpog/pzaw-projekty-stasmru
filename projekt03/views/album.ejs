@@ -1,0 +1,43 @@
+<%- include('head.partial.ejs') %>
+<div class="container">
+  <h1><%= album.title %></h1>
+
+  <div class="section album-details">
+    <p><strong>Data Wydania:</strong> <%= album.releaseDate %></p>
+    <p><strong>Całkowity Czas Trwania:</strong> <%= album.totalDuration %></p>
+    <p><strong>Posłuchaj na Spotify:</strong> <a href="<%= album.spotifyLink %>" target="_blank" class="spotify-link">Otwórz w Spotify</a></p>
+    <p><strong>Opis:</strong> <%= album.description %></p>
+  </div>
+
+  <div class="section album-songs">
+    <h2>Piosenki:</h2>
+    <ul>
+      <% album.songs.forEach(song => { %>
+        <li><%= song.title %></li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <div class="section comments">
+    <h2>Komentarze:</h2>
+    <% if (comments.length > 0) { %>
+      <ul>
+        <% comments.forEach(c => { %>
+          <li><strong><%= new Date(c.date).toLocaleString() %>:</strong> <%= c.comment %></li>
+        <% }); %>
+      </ul>
+    <% } else { %>
+      <p>Brak komentarzy.</p>
+    <% } %>
+
+    <h3>Dodaj Komentarz:</h3>
+    <form action="/add-comment" method="POST">
+      <input type="hidden" name="albumName" value="<%= album.artist %>">
+      <textarea name="comment" required placeholder="Wpisz swój komentarz..."></textarea><br><br>
+      <button type="submit">Dodaj Komentarz</button>
+    </form>
+  </div>
+
+  <a href="/" class="back-link">Powrót do Poleceń</a>
+</div>
+<%- include('foot.partial.ejs') %>

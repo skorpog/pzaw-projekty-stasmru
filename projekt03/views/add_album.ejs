@@ -1,0 +1,40 @@
+<%- include('head.partial.ejs') %>
+<div class="container">
+  <h1>Dodaj Album</h1>
+
+    <div class="errors">
+      <ul>
+        <% errors.forEach(error => { %>
+          <li><%= error %></li>
+        <% }); %>
+      </ul>
+    </div>
+
+  <form action="/add-album" method="POST">
+    <label for="artist">Artysta:</label>
+    <input type="text" id="artist" name="artist" value="<%= typeof album !== 'undefined' ? album.artist : '' %>" required><br><br>
+
+    <label for="title">Tytuł:</label>
+    <input type="text" id="title" name="title" value="<%= typeof album !== 'undefined' ? album.title : '' %>" required><br><br>
+
+    <label for="releaseDate">Data Wydania:</label>
+    <input type="date" id="releaseDate" name="releaseDate" value="<%= typeof album !== 'undefined' ? album.releaseDate : '' %>" required><br><br>
+
+    <label for="description">Opis:</label>
+    <textarea id="description" name="description" required><%= typeof album !== 'undefined' ? album.description : '' %></textarea><br><br>
+
+    <label for="totalDuration">Całkowity Czas Trwania:</label>
+    <input type="text" id="totalDuration" name="totalDuration" value="<%= typeof album !== 'undefined' ? album.totalDuration : '' %>" required><br><br>
+
+    <label for="spotifyLink">Link do Spotify:</label>
+    <input type="url" id="spotifyLink" name="spotifyLink" value="<%= typeof album !== 'undefined' ? album.spotifyLink : '' %>" required><br><br>
+
+    <label for="songs">Piosenki (oddzielone przecinkami):</label>
+    <textarea id="songs" name="songs" required><%= typeof album !== 'undefined' ? album.songs.join(', ') : '' %></textarea><br><br>
+
+    <button type="submit" class="action-button">Dodaj Album</button>
+  </form>
+
+  <a href="/" class="back-link">Powrót do Poleceń</a>
+</div>
+<%- include('foot.partial.ejs') %>

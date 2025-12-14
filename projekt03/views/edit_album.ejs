@@ -1,0 +1,42 @@
+<%- include('head.partial.ejs') %>
+<div class="container">
+  <h1>Edytuj Album</h1>
+
+  <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
+    <div class="errors">
+      <ul>
+        <% errors.forEach(error => { %>
+          <li><%= error %></li>
+        <% }); %>
+      </ul>
+    </div>
+  <% } %>
+
+  <form action="/edit-album/<%= album.id %>" method="POST">
+    <label for="artist">Artysta:</label>
+    <input type="text" id="artist" name="artist" value="<%= album.artist %>" required><br><br>
+
+    <label for="title">Tytuł:</label>
+    <input type="text" id="title" name="title" value="<%= album.title %>" required><br><br>
+
+    <label for="releaseDate">Data Wydania:</label>
+    <input type="date" id="releaseDate" name="releaseDate" value="<%= album.releaseDate %>" required><br><br>
+
+    <label for="description">Opis:</label>
+    <textarea id="description" name="description" required><%= album.description %></textarea><br><br>
+
+    <label for="totalDuration">Całkowity Czas Trwania:</label>
+    <input type="text" id="totalDuration" name="totalDuration" value="<%= album.totalDuration %>" required><br><br>
+
+    <label for="spotifyLink">Link do Spotify:</label>
+    <input type="url" id="spotifyLink" name="spotifyLink" value="<%= album.spotifyLink %>" required><br><br>
+
+    <label for="songs">Piosenki (oddzielone przecinkami):</label>
+    <textarea id="songs" name="songs" required><%= album.songs ? album.songs.map(song => song.title).join(', ') : '' %></textarea><br><br>
+
+    <button type="submit">Zaktualizuj Album</button>
+  </form>
+
+  <a href="/" class="back-link">Powrót do Poleceń</a>
+</div>
+<%- include('foot.partial.ejs') %>
