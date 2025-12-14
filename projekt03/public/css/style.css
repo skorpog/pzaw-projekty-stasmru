@@ -1,13 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Black+Ops+One&display=swap');
 
-body {
-  font-family: 'Black Ops One', cursive;
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Black Ops One', cursive;
   background: linear-gradient(135deg, #000 0%, #0a0a0a 50%, #111 100%);
   color: #C0C0C0;
   min-height: 100vh;
   overflow-x: hidden;
+  position: relative;
 }
 
 body::before {
@@ -50,6 +55,15 @@ h2 {
   text-shadow: 0 0 15px rgba(168, 168, 168, 0.6);
   letter-spacing: 1px;
   text-transform: uppercase;
+}
+
+h3 {
+  font-family: 'Metal Mania', cursive;
+  color: #A8A8A8;
+  font-size: 1.8em;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px rgba(168, 168, 168, 0.5);
 }
 
 .section {
@@ -121,6 +135,7 @@ li a {
   display: block;
   transition: all 0.3s ease;
   font-size: 1.1em;
+  margin-bottom: 10px;
 }
 
 li a:hover {
@@ -132,6 +147,7 @@ li a:hover {
   margin: 12px 0;
   line-height: 1.7;
   color: #B0B0B0;
+  font-size: 1em;
 }
 
 .album-details strong {
@@ -160,7 +176,6 @@ li a:hover {
 
 .album-songs ul {
   display: block;
-  grid-template-columns: none;
   gap: 8px;
 }
 
@@ -180,7 +195,78 @@ li a:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.back-link, .add-album-link, .edit-link, .delete-link, button, input[type="submit"] {
+/* Comments section */
+.comments ul {
+  display: block;
+  gap: 10px;
+}
+
+.comments li {
+  background: linear-gradient(145deg, #0f0f0f 0%, #1f1f1f 100%);
+  border: 1px solid #555;
+  padding: 15px;
+  margin: 10px 0;
+  border-radius: 8px;
+  color: #B0B0B0;
+}
+
+.comments li strong {
+  color: #A8A8A8;
+  display: block;
+  margin-bottom: 8px;
+}
+
+/* Forms */
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  color: #A8A8A8;
+  font-weight: bold;
+  margin-bottom: 8px;
+  margin-top: 15px;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="url"],
+textarea {
+  width: 100%;
+  padding: 12px;
+  background: linear-gradient(145deg, #1a1a1a 0%, #2a2a2a 100%);
+  border: 2px solid #555;
+  border-radius: 8px;
+  color: #C0C0C0;
+  font-family: 'Black Ops One', cursive;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+input[type="url"]:focus,
+textarea:focus {
+  outline: none;
+  border-color: #A8A8A8;
+  box-shadow: 0 0 15px rgba(168, 168, 168, 0.3);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
+/* Buttons */
+.back-link,
+.add-album-link,
+.edit-link,
+.delete-link,
+.action-button,
+button,
+input[type="submit"] {
   display: inline-block;
   padding: 12px 25px;
   background: linear-gradient(145deg, #666 0%, #888 100%);
@@ -189,17 +275,24 @@ li a:hover {
   border-radius: 8px;
   font-weight: bold;
   font-size: 1em;
+  font-family: 'Black Ops One', cursive;
   transition: all 0.3s ease;
   border: 1px solid #999;
   text-transform: uppercase;
   letter-spacing: 1px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  margin-left: 10px;
-  width: auto;
+  margin: 5px;
+  cursor: pointer;
   min-width: 80px;
 }
 
-.back-link:hover, .add-album-link:hover, .edit-link:hover, .delete-link:hover, button:hover, input[type="submit"]:hover {
+.back-link:hover,
+.add-album-link:hover,
+.edit-link:hover,
+.delete-link:hover,
+.action-button:hover,
+button:hover,
+input[type="submit"]:hover {
   background: linear-gradient(145deg, #888 0%, #AAA 100%);
   color: #000;
   transform: translateY(-2px);
@@ -208,10 +301,12 @@ li a:hover {
 
 .back-link {
   margin-top: 30px;
+  display: inline-block;
 }
 
 .add-album-link {
   margin-bottom: 20px;
+  display: inline-block;
 }
 
 .about-link {
@@ -233,7 +328,47 @@ li a:hover {
 }
 
 .about-link:hover {
+  background: linear-gradient(145deg, rgba(60, 60, 60, 0.9) 0%, rgba(80, 80, 80, 0.9) 100%);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(168, 168, 168, 0.4);
+}
 
+/* Error messages */
+.errors {
+  background: linear-gradient(145deg, rgba(139, 0, 0, 0.3) 0%, rgba(178, 34, 34, 0.3) 100%);
+  border: 2px solid #8B0000;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.errors ul {
+  display: block;
+  padding-left: 20px;
+}
+
+.errors li {
+  color: #FF6B6B;
+  background: none;
+  border: none;
+  padding: 5px 0;
+  margin: 5px 0;
+  list-style-type: disc;
+  box-shadow: none;
+}
+
+.errors li:hover {
+  transform: none;
+  background: none;
+}
+
+/* Action buttons in lists */
+li form {
+  display: inline-block;
+  margin: 0;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   h1 {
     font-size: 2.5em;
@@ -241,6 +376,10 @@ li a:hover {
 
   h2 {
     font-size: 1.8em;
+  }
+
+  h3 {
+    font-size: 1.5em;
   }
 
   .container {
@@ -260,7 +399,11 @@ li a:hover {
     padding: 15px;
   }
 
-  .back-link, .add-album-link, .action-button, button {
+  .back-link,
+  .add-album-link,
+  .action-button,
+  button,
+  input[type="submit"] {
     padding: 10px 20px;
     font-size: 0.9em;
   }
@@ -275,6 +418,10 @@ li a:hover {
     font-size: 1.5em;
   }
 
+  h3 {
+    font-size: 1.3em;
+  }
+
   .section {
     padding: 15px;
   }
@@ -282,5 +429,14 @@ li a:hover {
   li {
     padding: 12px;
   }
-}
+
+  .back-link,
+  .add-album-link,
+  .action-button,
+  button,
+  input[type="submit"] {
+    padding: 8px 15px;
+    font-size: 0.8em;
+    min-width: 60px;
+  }
 }
