@@ -3,6 +3,7 @@
   <h1><%= album.title %></h1>
 
   <div class="section album-details">
+    <p><strong>Artysta:</strong> <%= album.artist %></p>
     <p><strong>Data Wydania:</strong> <%= album.releaseDate %></p>
     <p><strong>Całkowity Czas Trwania:</strong> <%= album.totalDuration %></p>
     <p><strong>Posłuchaj na Spotify:</strong> <a href="<%= album.spotifyLink %>" target="_blank" class="spotify-link">Otwórz w Spotify</a></p>
@@ -32,7 +33,7 @@
 
     <h3>Dodaj Komentarz:</h3>
     <form action="/add-comment" method="POST">
-      <input type="hidden" name="albumName" value="<%= album.artist %>">
+      <input type="hidden" name="albumId" value="<%= album.id %>">
       <textarea name="comment" required placeholder="Wpisz swój komentarz..."></textarea><br><br>
       <button type="submit">Dodaj Komentarz</button>
     </form>

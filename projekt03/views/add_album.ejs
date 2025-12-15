@@ -2,6 +2,7 @@
 <div class="container">
   <h1>Dodaj Album</h1>
 
+  <% if (typeof errors !== 'undefined' && errors.length > 0) { %>
     <div class="errors">
       <ul>
         <% errors.forEach(error => { %>
@@ -9,6 +10,7 @@
         <% }); %>
       </ul>
     </div>
+  <% } %>
 
   <form action="/add-album" method="POST">
     <label for="artist">Artysta:</label>
@@ -30,7 +32,7 @@
     <input type="url" id="spotifyLink" name="spotifyLink" value="<%= typeof album !== 'undefined' ? album.spotifyLink : '' %>" required><br><br>
 
     <label for="songs">Piosenki (oddzielone przecinkami):</label>
-    <textarea id="songs" name="songs" required><%= typeof album !== 'undefined' ? album.songs.join(', ') : '' %></textarea><br><br>
+    <textarea id="songs" name="songs" required><%= typeof album !== 'undefined' && album.songs ? (Array.isArray(album.songs) ? album.songs.join(', ') : album.songs) : '' %></textarea><br><br>
 
     <button type="submit" class="action-button">Dodaj Album</button>
   </form>

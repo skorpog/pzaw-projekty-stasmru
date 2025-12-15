@@ -24,10 +24,11 @@ app.get("/", (req, res) => {
   res.render("home", { albums: albumSummaries });
 });
 
-app.get("/album/:name", (req, res) => {
-  const album = albums.getAlbum(req.params.name);
+// Changed to use ID instead of artist name
+app.get("/album/:id", (req, res) => {
+  const album = albums.getAlbumById(req.params.id);
   if (album) {
-    const albumComments = comments.filter(c => c.albumName === req.params.name);
+    const albumComments = comments.filter(c => c.albumId === req.params.id);
     res.render("album", { album, comments: albumComments });
   } else {
     res.status(404).send("Album not found");
@@ -39,7 +40,7 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/add-album", (req, res) => {
-  res.render("add_album");
+  res.render("add_album", { errors: [], album: undefined });
 });
 
 app.post("/add-album", (req, res) => {
@@ -68,7 +69,7 @@ app.post("/add-album", (req, res) => {
 app.get("/edit-album/:id", (req, res) => {
   const album = albums.getAlbumById(req.params.id);
   if (album) {
-    res.render("edit_album", { album });
+    res.render("edit_album", { album, errors: [] });
   } else {
     res.status(404).send("Album not found");
   }
@@ -99,16 +100,17 @@ app.post("/delete-album/:id", (req, res) => {
   res.redirect("/");
 });
 
+// Updated to use albumId instead of albumName
 app.post("/add-comment", (req, res) => {
-  const { albumName, comment } = req.body;
+  const { albumId, comment } = req.body;
   if (comment && comment.trim()) {
     comments.push({
-      albumName,
+      albumId,
       comment: comment.trim(),
       date: new Date().toISOString()
     });
   }
-  res.redirect(`/album/${albumName}`);
+  res.redirect(`/album/${albumId}`);
 });
 
 app.listen(port, () => {

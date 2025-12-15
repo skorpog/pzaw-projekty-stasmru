@@ -9,7 +9,7 @@
     <ul>
       <% albums.forEach(album => { %>
         <li>
-          <a href="/album/<%= album.artist %>"><%= album.artist %> - <%= album.title %></a>
+          <a href="/album/<%= album.id %>"><%= album.artist %> - <%= album.title %></a>
           <a href="/edit-album/<%= album.id %>" class="action-button">Edytuj</a>
           <form action="/delete-album/<%= album.id %>" method="POST" style="display:inline;">
             <input type="submit" class="action-button" value="Usuń" onclick="return confirm('Czy na pewno chcesz usunąć ten album?')">
