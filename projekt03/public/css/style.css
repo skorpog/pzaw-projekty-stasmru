@@ -195,7 +195,6 @@ li a:hover {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-/* Comments section */
 .comments ul {
   display: block;
   gap: 10px;
@@ -216,7 +215,6 @@ li a:hover {
   margin-bottom: 8px;
 }
 
-/* Forms */
 form {
   margin-top: 20px;
 }
@@ -259,7 +257,6 @@ textarea {
   line-height: 1.5;
 }
 
-/* Buttons */
 .back-link,
 .add-album-link,
 .edit-link,
@@ -333,7 +330,6 @@ input[type="submit"]:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(168, 168, 168, 0.4);
 }
 
-/* Error messages */
 .errors {
   background: linear-gradient(145deg, rgba(139, 0, 0, 0.3) 0%, rgba(178, 34, 34, 0.3) 100%);
   border: 2px solid #8B0000;
@@ -362,13 +358,13 @@ input[type="submit"]:hover {
   background: none;
 }
 
-/* Action buttons in lists */
+
 li form {
   display: inline-block;
   margin: 0;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   h1 {
     font-size: 2.5em;

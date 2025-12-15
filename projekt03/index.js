@@ -5,7 +5,6 @@ const albums = require("./models/album");
 const port = 8000;
 const app = express();
 
-// In-memory storage for comments (since no database for comments)
 const comments = [];
 app.set("view engine", "ejs");
 
@@ -24,7 +23,6 @@ app.get("/", (req, res) => {
   res.render("home", { albums: albumSummaries });
 });
 
-// Changed to use ID instead of artist name
 app.get("/album/:id", (req, res) => {
   const album = albums.getAlbumById(req.params.id);
   if (album) {
@@ -100,7 +98,6 @@ app.post("/delete-album/:id", (req, res) => {
   res.redirect("/");
 });
 
-// Updated to use albumId instead of albumName
 app.post("/add-comment", (req, res) => {
   const { albumId, comment } = req.body;
   if (comment && comment.trim()) {

@@ -106,7 +106,7 @@ function validateAlbumData(album) {
     errors.push("Missing or invalid songs array");
   } else {
     for (let song of album.songs) {
-      if (typeof song != "string" || song.length < 1 || song.length > 500) {
+      if (typeof song != "string" || song.length < 1 || song.length > 2000) {
         errors.push("Invalid song title");
       }
     }
