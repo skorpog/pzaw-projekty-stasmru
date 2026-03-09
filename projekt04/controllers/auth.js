@@ -1,0 +1,1 @@
+// zalogowany uzytkownik bedzie mogl tylko dodawac komentarze, admin bedzie mogl dodawac usuwac edytowac komentarze i tresci na stonie

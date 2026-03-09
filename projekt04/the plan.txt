@@ -1,0 +1,15 @@
+    SWIĘTY PLAN DZIAŁANIA
+-1. Doedukować się po feriach bo nic nie pamiętam
+0. Skopiować projekt 03 tutaj jako podstawe projektu(done)
+1. System użytkownika
+
+    a) login i hasło i salted hash
+    b) dodawanie komentarzy
+
+2. Admin<Trzeba zrobić żeby tylko admin mógł:>
+
+    a) Usuwać komentarze
+    b) Usuwać/dodawać/edytować rzeczy związane z treścią strony
+
+3. cookies
+    a) cookies(doedukować się)
