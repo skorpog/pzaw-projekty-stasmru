@@ -59,7 +59,55 @@ const testAlbums = [
       "Misanthrope",
       "Perennial Quest"
     ]
+  },
+  {
+    artist: "Trivium",
+    title: "Ascendancy",
+    releaseDate: "2005-05-09",
+    description: "Mega fajny album, energiczno - melodyczny",
+    totalDuration: "55:16",
+    spotifyLink: "https://open.spotify.com/album/4tUJoHF6in0wA5cpioJkbV?si=OFt7_NwCRmOfUgFrjhCWsQ",
+    songs: [
+      "The End of Everything",
+      "Rain",
+      "Pull Harder on the Strings of Your Martyr",
+      "Drowned and Torn Asunder",
+      "Ascendancy",
+      "A Gunshot to the Head of Trepidation",
+      "Like Light to the Flies",
+      "Dying in Your Arms",
+      "The Deceived",
+      "Suffocating Sight",
+      "Departure",
+      "Declaration"
+    ]
+  },
+  {
+    artist: "Sepultura",
+    title: "Chaos A.D.",
+    releaseDate: "1993-09-02",
+    description: "ODMOWA/OPÓR - tak naprawde album dotykał tematy polityczne i protestów które działy sie w krauju zespołu, czyli Brazylii. Czuć tą agresję związna z sytuacją w kraju. Pierwszy raz Sepultura użyła instrumentów plemmiennych.",
+    totalDuration: "47:03",
+    spotifyLink: "https://open.spotify.com/album/5r4qa5AIQUVypFRXQzjaiu?si=t1YiEqtKRNWFVdVHPXvJvQ",
+    songs: [
+      "Refuse/Resist",
+      "Territory",
+      "Slave New World",
+      "Amen",
+      "Kaiowas",
+      "Propaganda",
+      "Biotech Is Godzilla",
+      "Nomad",
+      "We Who Are Not as Others",
+      "Manifest",
+      "The Hunt",
+      "Clenched Fist"
+    ]
+  },
+  {
+    // TODO - EMPEROR - ANTHEMS TO THE WELKIN AT DUSK
   }
+
 ];
 
 console.log("Populating db...");
