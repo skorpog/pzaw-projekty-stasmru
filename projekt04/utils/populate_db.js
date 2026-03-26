@@ -103,10 +103,8 @@ const testAlbums = [
       "The Hunt",
       "Clenched Fist"
     ]
-  },
-  {
-    // TODO - EMPEROR - ANTHEMS TO THE WELKIN AT DUSK
   }
+// ANTHEMS TO THE WELKIN AT DUST
 
 ];
 
