@@ -103,9 +103,25 @@ const testAlbums = [
       "The Hunt",
       "Clenched Fist"
     ]
-  }
-// ANTHEMS TO THE WELKIN AT DUST
-
+  },
+  {
+  artist: "Emperor",
+  title: "Anthems to the Welkin at Dusk",
+  releaseDate: "1997-07-08",
+  description: "Ten album łączy surowość black metalu z symfonicznym rozmachem. Teksty skupiają się na kosmicznych, mistycznych i filozoficznych wizjach, a całość brzmi jak zimna, monumentalna podróż przez nocne niebo. To jeden z najbardziej przełomowych albumów w historii gatunku, pokazujący jak ekstremalna muzyka może być jednocześnie brutalna i wyrafinowana.",
+  totalDuration: "51:51",
+  spotifyLink: "https://open.spotify.com/album/7MOaD3Y4SmevciBliFGqiQ?si=MU52KuYPTquDd6hz3Kjx5g",
+  songs: [
+    "Alsvartr (The Oath)",
+    "Ye Entrancemperium",
+    "Thus Spake the Nightspirit",
+    "Ensorcelled by Khaos",
+    "The Loss and Curse of Reverence",
+    "The Acclamation of Bonds",
+    "With Strength I Burn",
+    "The Wanderer"
+  ]
+}
 ];
 
 console.log("Populating db...");
