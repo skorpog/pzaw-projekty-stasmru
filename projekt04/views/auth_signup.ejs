@@ -1,0 +1,28 @@
+<%- include('head.partial.ejs') %>
+<div class="container">
+  <form action="<%- form.action %>" method="POST" class="auth-form">
+    <h1><%= title %></h1>
+    <div>
+      <label for="username">Nazwa użytkownika</label>
+      <input id="username" name="username" type="text" required minlength="3" maxlength="25" value="<%- form.data.username || '' %>">
+      <% if (form.errors.username) { %><div class="error"><%= form.errors.username %></div><% } %>
+    </div>
+
+    <div>
+      <label for="password">Hasło</label>
+      <input id="password" name="password" type="password" required minlength="8">
+      <% if (form.errors.password) { %><div class="error"><%= form.errors.password %></div><% } %>
+    </div>
+
+    <div>
+      <label for="password_confirm">Powtórz hasło</label>
+      <input id="password_confirm" name="password_confirm" type="password" required minlength="8">
+      <% if (form.errors.password_confirm) { %><div class="error"><%= form.errors.password_confirm %></div><% } %>
+    </div>
+
+    <button type="submit">Zarejestruj się</button>
+    
+    <p>Masz już konto? <a href="/auth/login">Zaloguj się</a></p>
+  </form>
+</div>
+<%- include('foot.partial.ejs') %>

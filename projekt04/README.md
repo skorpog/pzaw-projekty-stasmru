@@ -1,56 +1,103 @@
 # Serwer Express z Dynamicznymi Widokami EJS
 
-Ten projekt to prosty serwer Express, który obsługuje dynamiczne widoki przy użyciu silnika szablonów EJS. Aplikacja pozwala na przeglądanie poleceń albumów metalowych oraz wyświetlanie szczegółów poszczególnych albumów.
+Ten projekt to aplikacja Express z obsługą autentykacji użytkowników, zarządzaniem albumami metalowych oraz systemem komentarzy. Aplikacja pozwala na przeglądanie poleceń albumów metalowych, wyświetlanie szczegółów poszczególnych albumów i dodawanie komentarzy.
 
 ## Wymagania
 
-- Node.js
+- Node.js (wersja 14+)
 - npm
-
-## INFORMACJA
-Poniższych pakietów nie trzeba instalować, powinny być załączone w projekcie
 
 ## Instalacja
 
 1. Sklonuj lub pobierz projekt.
 2. Przejdź do katalogu projektu.
-3. Uruchom:
+3. Zainstaluj zależności:
 
-```
+```bash
 npm install
 ```
-```
-npm install express
-```
-```
-npm install morgan
-```
-```
-npm install sqlite3
+
+## Konfiguracja
+
+### 1. Wygeneruj plik .env z sekretami
+
+Uruchom komendę, aby wygenerować plik `.env` z wymaganymi zmiennymi środowiskowymi:
+
+```bash
+npm run generate_env
 ```
 
+### 2. Wypełnij bazę danych
 
-## Populowanie bazy danych
+Uruchom skrypt, który doda dane testowe do bazy danych:
 
-Trzeba to zrobić żeby cokolwiek było:
+```bash
+npm run populate_db
 ```
-node utils/populate_db.js
-```
-Ten skrypt doda trzy albumy metalowe:
-- Metallica - Black Album
-- Iron Maiden - The Number of the Beast
-- Death - Symbolic
 
+Ten skrypt doda:
+- **Konto admin**: `admin` / `changeme`
+- **Konto standardowe**: `student` / `changeme`
+- **Kilka przykładowych albumów**
 
 ## Uruchamianie Serwera
 
-Uruchom serwer za pomocą:
+Aby uruchomić serwer w trybie deweloperskim:
 
-```
-node index.js
+```bash
+npm run dev
 ```
 
-Serwer uruchomi się na porcie 8000. Otwórz przeglądarkę i przejdź do `http://localhost:8000`.
+Serwer będzie dostępny pod adresem: **http://localhost:3000**
+
+## Dostępne npm skrypty
+
+- `npm run dev` - uruchomienie serwera
+- `npm run populate_db` - napełnienie bazy danych przykładowymi danymi
+- `npm run generate_env` - wygenerowanie pliku `.env`
+
+## Funkcjonalności
+
+-  **Autentykacja**: Rejestracja, logowanie, wylogowanie z haszowaniem hasła (argon2)
+-  **Autoryzacja**: System uprawnień z rolą admin
+-  **Zarządzanie albumami**: Tylko administratorzy mogą tworzyć i edytować albumy
+-  **System komentarzy**: Użytkownicy mogą komentować albumy
+-  **Motyw**: Tryb ciemny i jasny z zapisem preferencji
+-  **Cookies**: Autentykacja oparta na bezpiecznych ciasteczkami HTTP-only
+
+## Struktura Projektu
+
+- `index.js` - główny plik aplikacji
+- `controllers/` - logika biznesowa
+- `models/` - modele bazy danych
+- `middleware/` - funkcje middleware
+- `views/` - szablony EJS
+- `public/` - pliki statyczne (CSS, JS)
+- `utils/` - narzędzia pomocnicze
+
+## Technologie
+
+### Backend
+- **Express.js** (v5.2.1) - framework webowy Node.js
+- **EJS** (v3.1.10) - silnik szablonów do renderowania stron
+- **Node.js** - środowisko wykonawcze JavaScript
+
+### Bezpieczeństwo
+- **Argon2**
+- **Cookie Parser** 
+
+### Baza Danych
+- **SQLite3** 
+- **DatabaseSync** 
+
+### Narzędzia
+- **Morgan** 
+
+### Frontend
+- **CSS3** 
+- **JavaScript** 
+
+Serwer uruchomi się na porcie 3000 (lub wartość z `PORT` w .env). Otwórz przeglądarkę i przejdź do `http://localhost:3000`.
 
 ## Funkcjonalności
 
@@ -94,21 +141,4 @@ Serwer uruchomi się na porcie 8000. Otwórz przeglądarkę i przejdź do `http:
 Na stronie szczegółów każdego albumu użytkownicy mogą:
 - Przeglądać istniejące komentarze
 - Dodawać nowe komentarze z automatycznym znacznikiem czasu
-
-**Uwaga:** Komentarze są przechowywane w pamięci serwera i zostaną utracone po restarcie aplikacji.
-
-## Technologie
-
-- **Backend:**
-  - Express.js 5.1.0
-  - Node.js built-in SQLite (DatabaseSync)
-  - Morgan dla logowania
-
-- **Frontend:**
-  - EJS
-  - CSS z animacjami i gradientami
-  - Google Fonts (Metal Mania, Black Ops One)
-
-- **Baza Danych:**
-  - SQLite (przez node:sqlite)
 

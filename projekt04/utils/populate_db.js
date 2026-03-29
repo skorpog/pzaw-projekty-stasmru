@@ -1,4 +1,5 @@
-const albums = require("../models/album");
+import albums from "../models/album.js";
+import userModel from "../models/user.js";
 
 const testAlbums = [
   {
@@ -126,11 +127,30 @@ const testAlbums = [
 
 console.log("Populating db...");
 
-testAlbums.forEach(albumData => {
-  if (!albums.hasAlbumByArtistAndTitle(albumData.artist, albumData.title)) {
-    let album = albums.addAlbum(albumData);
-    console.log("Created album:", album);
-  } else {
-    console.log("Album already exists:", albumData.artist, "-", albumData.title);
+async function seed() {
+  console.log("Populating db...");
+
+  let admin = await userModel.createUser("admin", "changeme");
+  if (admin) {
+    const err = userModel.addAttribute(admin.id, "is_admin", true);
+    if (err) console.error("Could not set admin attribute:", err);
   }
+
+  let user = await userModel.createUser("student", "changeme");
+
+  for (const albumData of testAlbums) {
+    if (!albums.hasAlbumByArtistAndTitle(albumData.artist, albumData.title)) {
+      const album = albums.addAlbum(albumData, null);
+      console.log("Created album:", album);
+    } else {
+      console.log("Album already exists:", albumData.artist, "-", albumData.title);
+    }
+  }
+
+  console.log("Done!");
+}
+
+seed().catch(err => {
+  console.error(err);
+  process.exit(1);
 });

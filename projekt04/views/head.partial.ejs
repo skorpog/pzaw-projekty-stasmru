@@ -8,9 +8,29 @@
 </head>
 <body class="<%= locals.theme %>-mode">
   <div class="top-bar">
-    <form method="POST" action="/toggle-theme" style="display:inline;">
-      <button type="submit" class="theme-switcher"><%= locals.theme === 'light' ? 'Przejdź do trybu ciemnego' : 'Przejdź do trybu jasnego' %></button>
-    </form>
+    <div class="top-bar-left">
+      <form method="POST" action="/toggle-theme" style="display:inline;">
+        <button type="submit" class="theme-switcher"><%= locals.theme === 'light' ? 'Przejdź do trybu ciemnego' : 'Przejdź do trybu jasnego' %></button>
+      </form>
+    </div>
+    <div class="top-bar-center">
+      <a href="/" class="nav-button">Albumy</a>
+    </div>
+    <div class="auth-links">
+      <% if (locals.user) { %>
+        <span>Witaj, <%= locals.user.username %><%= locals.user.is_admin ? ' (Admin)' : '' %></span>
+        <form method="GET" action="/auth/logout" style="display:inline;">
+          <button type="submit" class="auth-button">Wyloguj</button>
+        </form>
+      <% } else { %>
+        <form method="GET" action="/auth/login" style="display:inline;">
+          <button type="submit" class="auth-button">Logowanie</button>
+        </form>
+        <form method="GET" action="/auth/signup" style="display:inline;">
+          <button type="submit" class="auth-button">Rejestracja</button>
+        </form>
+      <% } %>
+    </div>
   </div>
 
   <% if (locals.consent === 'none') { %>

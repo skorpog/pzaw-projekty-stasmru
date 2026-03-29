@@ -13,6 +13,7 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
+  margin-top: 70px;
 }
 
 body::before {
@@ -228,6 +229,7 @@ label {
 }
 
 input[type="text"],
+input[type="password"],
 input[type="date"],
 input[type="url"],
 textarea {
@@ -243,6 +245,7 @@ textarea {
 }
 
 input[type="text"]:focus,
+input[type="password"]:focus,
 input[type="date"]:focus,
 input[type="url"]:focus,
 textarea:focus {
@@ -366,6 +369,26 @@ li form {
 
 
 @media (max-width: 768px) {
+  .top-bar {
+    padding: 12px 15px;
+    gap: 10px;
+    grid-template-columns: 1fr;
+  }
+
+  .top-bar-left,
+  .top-bar-center {
+    gap: 8px;
+  }
+
+  body {
+    margin-top: 110px;
+  }
+
+  .auth-links span {
+    padding: 0 10px;
+    border: none;
+  }
+
   h1 {
     font-size: 2.5em;
   }
@@ -406,6 +429,21 @@ li form {
 }
 
 @media (max-width: 480px) {
+  .top-bar {
+    padding: 10px 10px;
+    gap: 5px;
+    grid-template-columns: 1fr;
+  }
+
+  .top-bar-left,
+  .top-bar-center {
+    gap: 5px;
+  }
+
+  .auth-links span {
+    display: none;
+  }
+
   h1 {
     font-size: 2em;
   }
@@ -446,99 +484,295 @@ li form {
   --button: linear-gradient(145deg, #666 0%, #888 100%);
 }
 
-body.light-mode {
-  background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 50%, #f2f2f2 100%);
-  color: #1a1a1a;
-}
-
-body.light-mode h1,
-body.light-mode h2,
-body.light-mode h3,
-body.light-mode label,
-body.light-mode .about-link,
-body.light-mode .add-album-link,
-body.light-mode .back-link,
-body.light-mode .action-button,
-body.light-mode button,
-body.light-mode input[type="submit"] {
-  color: #1a1a1a;
-}
-
-body.light-mode .section,
-body.light-mode li,
-body.light-mode input[type="text"],
-body.light-mode input[type="date"],
-body.light-mode input[type="url"],
-body.light-mode textarea {
-  background: #ffffff;
-  border-color: #ccc;
-  color: #1a1a1a;
-}
-
-body.dark-mode {
-  background: linear-gradient(135deg, #000 0%, #0a0a0a 50%, #111 100%);
-  color: #C0C0C0;
-}
-
 .top-bar {
   position: fixed;
-  right: 20px;
-  top: 20px;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 999;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 20px;
+  align-items: center;
+  padding: 15px 30px;
+  background: linear-gradient(90deg, rgba(20, 20, 20, 0.95) 0%, rgba(40, 40, 40, 0.95) 100%);
+  border-bottom: 2px solid #555;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
 }
 
-.theme-switcher {
+.top-bar-left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.top-bar-center {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.auth-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.theme-switcher,
+.auth-button,
+.nav-button {
   background: #222;
   color: #eee;
   border: 1px solid #555;
   border-radius: 10px;
   padding: 10px 14px;
   font-size: 0.85em;
-}
-
-.cookie-consent-banner {
-  position: fixed;
-  left: 16px;
-  right: 16px;
-  bottom: 16px;
-  background: rgba(20, 20, 20, 0.95);
-  border: 1px solid #999;
-  border-radius: 14px;
-  padding: 15px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-  color: #f5f5f5;
-  z-index: 1000;
-}
-
-.cookie-consent-banner.hidden {
-  display: none;
-}
-
-.cookie-consent-content p {
-  margin-bottom: 10px;
-  line-height: 1.4;
-}
-
-.cookie-consent-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.cookie-consent-buttons button {
-  border: 1px solid #999;
-  border-radius: 8px;
-  padding: 8px 12px;
+  font-family: 'Black Ops One', cursive;
   font-weight: bold;
   cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  height: 36px;
 }
 
-.cookie-consent-buttons .opt-in {
-  background: #4CAF50;
-  color: #fff;
+.theme-switcher:hover,
+.auth-button:hover,
+.nav-button:hover {
+  background: #333;
+  border-color: #777;
+  box-shadow: 0 0 10px rgba(168, 168, 168, 0.2);
 }
 
-.cookie-consent-buttons .opt-out {
-  background: #D32F2F;
-  color: #fff;
+.auth-links span {
+  color: #A8A8A8;
+  font-weight: bold;
+  white-space: nowrap;
+  padding: 0 15px;
+  border-right: 1px solid #555;
+}
+
+.auth-links form {
+  display: inline-flex;
+  margin: 0;
+  align-items: center;
+}
+
+.top-bar form {
+  display: inline-flex;
+  margin: 0;
+  align-items: center;
+}
+
+body.light-mode {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f1f3f5 100%);
+  color: #2c3e50;
+}
+
+body.light-mode .top-bar {
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.97) 0%, rgba(248, 249, 250, 0.97) 100%);
+  border-bottom-color: #d0d8e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .auth-links span {
+  border-right-color: #d0d8e0;
+  color: #2c3e50;
+}
+
+body.light-mode .theme-switcher,
+body.light-mode .auth-button,
+body.light-mode .nav-button {
+  background: #2c5f2d;
+  color: #ffffff;
+  border: 1px solid #1a472a;
+}
+
+body.light-mode .theme-switcher:hover,
+body.light-mode .auth-button:hover,
+body.light-mode .nav-button:hover {
+  background: #1a472a;
+  border-color: #0f2817;
+  box-shadow: 0 0 10px rgba(44, 95, 45, 0.3);
+}
+
+body.light-mode h1 {
+  color: #1a472a;
+  text-shadow: none;
+}
+
+body.light-mode h2,
+body.light-mode h3 {
+  color: #2c5f2d;
+  text-shadow: none;
+}
+
+body.light-mode h2 {
+  border-bottom-color: #2c5f2d;
+}
+
+body.light-mode label {
+  color: #2c3e50;
+}
+
+body.light-mode .section {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fb 100%);
+  border-color: #d0d8e0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+body.light-mode .section::before {
+  background: linear-gradient(90deg, transparent 0%, #2c5f2d 50%, transparent 100%);
+}
+
+body.light-mode li {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fb 100%);
+  border-color: #d0d8e0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  color: #2c3e50;
+}
+
+body.light-mode li:hover {
+  background: linear-gradient(145deg, #f0f4f8 0%, #e9ecef 100%);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: #2c5f2d;
+}
+
+body.light-mode li a {
+  color: #2c5f2d;
+}
+
+body.light-mode li a:hover {
+  color: #1a472a;
+  text-shadow: none;
+}
+
+body.light-mode .album-details p {
+  color: #2c3e50;
+}
+
+body.light-mode .album-details strong {
+  color: #1a472a;
+  text-shadow: none;
+}
+
+body.light-mode .album-songs li {
+  background: linear-gradient(145deg, #f8f9fa 0%, #f0f2f5 100%);
+  border-color: #d0d8e0;
+  color: #2c3e50;
+}
+
+body.light-mode .album-songs li:hover {
+  background: linear-gradient(145deg, #e9ecef 0%, #dee2e6 100%);
+}
+
+body.light-mode .comments li {
+  background: linear-gradient(145deg, #f8f9fa 0%, #f0f2f5 100%);
+  border-color: #d0d8e0;
+  color: #2c3e50;
+}
+
+body.light-mode .comments li strong {
+  color: #1a472a;
+}
+
+body.light-mode input[type="text"],
+body.light-mode input[type="password"],
+body.light-mode input[type="date"],
+body.light-mode input[type="url"],
+body.light-mode textarea {
+  background: #ffffff;
+  border-color: #bdbfc5;
+  color: #2c3e50;
+}
+
+body.light-mode input[type="text"]:focus,
+body.light-mode input[type="password"]:focus,
+body.light-mode input[type="date"]:focus,
+body.light-mode input[type="url"]:focus,
+body.light-mode textarea:focus {
+  border-color: #2c5f2d;
+  box-shadow: 0 0 15px rgba(44, 95, 45, 0.2);
+}
+
+body.light-mode .about-link,
+body.light-mode .add-album-link,
+body.light-mode .back-link,
+body.light-mode .action-button,
+body.light-mode button,
+body.light-mode input[type="submit"] {
+  background: linear-gradient(145deg, #2c5f2d 0%, #1a472a 100%);
+  color: #ffffff;
+  border-color: #1a472a;
+}
+
+body.light-mode .about-link:hover,
+body.light-mode .add-album-link:hover,
+body.light-mode .back-link:hover,
+body.light-mode .action-button:hover,
+body.light-mode button:hover,
+body.light-mode input[type="submit"]:hover {
+  background: linear-gradient(145deg, #1a472a 0%, #0f2817 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 0 15px rgba(44, 95, 45, 0.3);
+}
+
+body.light-mode .theme-switcher,
+body.light-mode .auth-button {
+  background: #2c5f2d;
+  color: #ffffff;
+  border: 1px solid #1a472a;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-size: 0.85em;
+  font-family: 'Black Ops One', cursive;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  height: 36px;
+}
+
+body.light-mode .theme-switcher:hover,
+body.light-mode .auth-button:hover {
+  background: #1a472a;
+  box-shadow: 0 0 10px rgba(44, 95, 45, 0.3);
+}
+
+body.light-mode .auth-links span {
+  color: #2c3e50;
+}
+
+body.light-mode .auth-form {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fb 100%);
+  border-color: #d0d8e0;
+}
+
+body.light-mode .auth-form a {
+  color: #2c5f2d;
+}
+
+body.light-mode .auth-form a:hover {
+  color: #1a472a;
+  text-shadow: none;
+}
+
+body.light-mode .error {
+  color: #c92a2a;
+}
+
+body.light-mode .cookie-consent-banner {
+  background: rgba(240, 242, 245, 0.95);
+  border-color: #bdbfc5;
+  color: #2c3e50;
 }

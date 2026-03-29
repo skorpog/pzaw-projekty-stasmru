@@ -1,6 +1,6 @@
-const { DatabaseSync } = require('node:sqlite');
+import { DatabaseSync } from 'node:sqlite';
 
-const db_path = "./database.db";
+const db_path = "./db.sqlite";
 const db = new DatabaseSync(db_path);
 
 db.exec(
@@ -12,6 +12,7 @@ db.exec(
     description TEXT NOT NULL,
     totalDuration TEXT NOT NULL,
     spotifyLink TEXT NOT NULL,
+    author_id INTEGER,
     UNIQUE(artist, title)
   ) STRICT;
   CREATE TABLE IF NOT EXISTS songs (
@@ -21,8 +22,14 @@ db.exec(
   ) STRICT;`
 );
 
+try {
+  db.exec("ALTER TABLE albums ADD COLUMN author_id INTEGER;");
+} catch (e) {
+
+}
+
 function getAlbumSummaries() {
-  const stmt = db.prepare("SELECT id, artist, title, releaseDate, description, totalDuration, spotifyLink FROM albums;");
+  const stmt = db.prepare("SELECT id, artist, title, releaseDate, description, totalDuration, spotifyLink, author_id FROM albums;");
   return stmt.all();
 }
 
@@ -39,7 +46,7 @@ function hasAlbumByArtistAndTitle(artist, title) {
 }
 
 function getAlbum(albumArtist) {
-  const stmt = db.prepare("SELECT id, artist, title, releaseDate, description, totalDuration, spotifyLink FROM albums WHERE artist = ?;");
+  const stmt = db.prepare("SELECT id, artist, title, releaseDate, description, totalDuration, spotifyLink, author_id FROM albums WHERE artist = ?;");
   let album = stmt.get(albumArtist);
   if (album != null) {
     const songStmt = db.prepare("SELECT id, title FROM songs WHERE album_id = ?;");
@@ -50,7 +57,7 @@ function getAlbum(albumArtist) {
 }
 
 function getAlbumById(id) {
-  const stmt = db.prepare("SELECT id, artist, title, releaseDate, description, totalDuration, spotifyLink FROM albums WHERE id = ?;");
+  const stmt = db.prepare("SELECT id, artist, title, releaseDate, description, totalDuration, spotifyLink, author_id FROM albums WHERE id = ?;");
   let album = stmt.get(id);
   if (album != null) {
     const songStmt = db.prepare("SELECT id, title FROM songs WHERE album_id = ?;");
@@ -60,10 +67,18 @@ function getAlbumById(id) {
   return null;
 }
 
-function addAlbum(album) {
-  const stmt = db.prepare(`INSERT INTO albums (artist, title, releaseDate, description, totalDuration, spotifyLink)
-        VALUES (?, ?, ?, ?, ?, ?) RETURNING id, artist, title, releaseDate, description, totalDuration, spotifyLink;`);
-  let result = stmt.get(album.artist, album.title, album.releaseDate, album.description, album.totalDuration, album.spotifyLink);
+function addAlbum(album, authorId) {
+  const stmt = db.prepare(`INSERT INTO albums (artist, title, releaseDate, description, totalDuration, spotifyLink, author_id)
+        VALUES (?, ?, ?, ?, ?, ?, ?) RETURNING id, artist, title, releaseDate, description, totalDuration, spotifyLink, author_id;`);
+  let result = stmt.get(
+    album.artist,
+    album.title,
+    album.releaseDate,
+    album.description,
+    album.totalDuration,
+    album.spotifyLink,
+    authorId || null,
+  );
   const songStmt = db.prepare(`INSERT INTO songs (album_id, title) VALUES (?, ?) RETURNING id, title;`);
   for (let song of album.songs) {
     songStmt.run(result.id, song);
@@ -114,7 +129,7 @@ function validateAlbumData(album) {
   return errors;
 }
 
-module.exports = {
+export default {
   getAlbumSummaries,
   hasAlbum,
   hasAlbumByArtistAndTitle,
