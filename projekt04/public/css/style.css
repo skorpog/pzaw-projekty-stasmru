@@ -144,6 +144,15 @@ li a:hover {
   text-shadow: 0 0 10px rgba(168, 168, 168, 0.5);
 }
 
+a {
+  color: #C0C0C0;
+  transition: all 0.3s ease;
+}
+
+a:hover {
+  color: #E0E0E0;
+}
+
 .album-details p {
   margin: 12px 0;
   line-height: 1.7;
@@ -214,6 +223,20 @@ li a:hover {
   color: #A8A8A8;
   display: block;
   margin-bottom: 8px;
+}
+
+.comments p a {
+  color: #C0C0C0;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid #C0C0C0;
+  transition: all 0.3s ease;
+}
+
+.comments p a:hover {
+  color: #E0E0E0;
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+  border-bottom-color: #E0E0E0;
 }
 
 form {
@@ -367,6 +390,71 @@ li form {
   margin: 0;
 }
 
+.auth-form {
+  background: linear-gradient(145deg, rgba(30, 30, 30, 0.9) 0%, rgba(45, 45, 45, 0.9) 100%);
+  border: 2px solid #555;
+  border-radius: 12px;
+  padding: 40px;
+  max-width: 500px;
+  margin: 0 auto;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.auth-form h1 {
+  margin-bottom: 30px;
+}
+
+.auth-form div {
+  margin-bottom: 20px;
+}
+
+.auth-form button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(145deg, #A8A8A8 0%, #C0C0C0 100%);
+  color: #000;
+  border: none;
+  font-size: 1.1em;
+  margin: 20px 0 0 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.auth-form button:hover {
+  background: linear-gradient(145deg, #C0C0C0 0%, #E0E0E0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5), 0 0 20px rgba(200, 200, 200, 0.4);
+}
+
+.auth-form p {
+  color: #A8A8A8;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.auth-form a {
+  color: #C0C0C0;
+  text-decoration: none;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  border-bottom: 2px solid #C0C0C0;
+}
+
+.auth-form a:hover {
+  color: #E0E0E0;
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
+  border-bottom-color: #E0E0E0;
+}
+
+.error {
+  color: #FF6B6B;
+  background: rgba(139, 0, 0, 0.2);
+  border-left: 3px solid #FF6B6B;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-size: 0.9em;
+}
 
 @media (max-width: 768px) {
   .top-bar {
@@ -654,6 +742,14 @@ body.light-mode li a:hover {
   text-shadow: none;
 }
 
+body.light-mode a {
+  color: #2c5f2d;
+}
+
+body.light-mode a:hover {
+  color: #1a472a;
+}
+
 body.light-mode .album-details p {
   color: #2c3e50;
 }
@@ -681,6 +777,17 @@ body.light-mode .comments li {
 
 body.light-mode .comments li strong {
   color: #1a472a;
+}
+
+body.light-mode .comments p a {
+  color: #2c5f2d;
+  border-bottom-color: #2c5f2d;
+}
+
+body.light-mode .comments p a:hover {
+  color: #1a472a;
+  text-shadow: none;
+  border-bottom-color: #1a472a;
 }
 
 body.light-mode input[type="text"],
@@ -755,16 +862,33 @@ body.light-mode .auth-links span {
 
 body.light-mode .auth-form {
   background: linear-gradient(145deg, #ffffff 0%, #f8f9fb 100%);
-  border-color: #d0d8e0;
+  border: 2px solid #d0d8e0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .auth-form button {
+  background: linear-gradient(145deg, #2c5f2d 0%, #1a472a 100%);
+  color: #ffffff;
+}
+
+body.light-mode .auth-form button:hover {
+  background: linear-gradient(145deg, #1a472a 0%, #0f2817 100%);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15), 0 0 20px rgba(44, 95, 45, 0.3);
+}
+
+body.light-mode .auth-form p {
+  color: #2c3e50;
 }
 
 body.light-mode .auth-form a {
   color: #2c5f2d;
+  border-bottom-color: #2c5f2d;
 }
 
 body.light-mode .auth-form a:hover {
   color: #1a472a;
   text-shadow: none;
+  border-bottom-color: #1a472a;
 }
 
 body.light-mode .error {

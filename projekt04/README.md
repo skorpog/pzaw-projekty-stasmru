@@ -70,7 +70,6 @@ Serwer będzie dostępny pod adresem: **http://localhost:3000**
 - `index.js` - główny plik aplikacji
 - `controllers/` - logika biznesowa
 - `models/` - modele bazy danych
-- `middleware/` - funkcje middleware
 - `views/` - szablony EJS
 - `public/` - pliki statyczne (CSS, JS)
 - `utils/` - narzędzia pomocnicze
