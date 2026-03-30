@@ -12,9 +12,9 @@
 
   <% if (user && user.is_admin) { %>
     <div class="section album-actions">
-      <a href="/edit-album/<%= album.id %>">Edytuj album</a>
+      <a href="/edit-album/<%= album.id %>" class="action-button">Edytuj album</a>
       <form action="/delete-album/<%= album.id %>" method="POST" style="display:inline; margin-left: 10px;">
-        <button type="submit" onclick="return confirm('Czy na pewno chcesz usunąć album?');">Usuń album</button>
+        <button type="submit" class="action-button" onclick="return confirm('Czy na pewno chcesz usunąć album?');">Usuń album</button>
       </form>
     </div>
   <% } %>

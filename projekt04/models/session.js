@@ -18,22 +18,30 @@ CREATE TABLE IF NOT EXISTS fc_session (
 `);
 
 const db_ops = {
-  create_session: db.prepare(
-    `INSERT INTO fc_session (id, user_id, created_at)
-     VALUES (?, ?, ?) RETURNING id, user_id, created_at;`,
-  ),
-  get_session: db.prepare(
-    "SELECT id, user_id, created_at FROM fc_session WHERE id = ?;",
-  ),
-  delete_session: db.prepare("DELETE FROM fc_session WHERE id = ?;"),
+  create_session(userId) {
+    const sessionId = randomBytes(8).readBigInt64BE();
+    const createdAt = Date.now();
+    const stmt = db.prepare(
+      `INSERT INTO fc_session (id, user_id, created_at) VALUES (?, ?, ?);`,
+    );
+    stmt.run(sessionId, userId, createdAt);
+    return { id: sessionId, user_id: userId, created_at: createdAt };
+  },
+  get_session(sessionId) {
+    const stmt = db.prepare(
+      "SELECT id, user_id, created_at FROM fc_session WHERE id = ?;",
+    );
+    stmt.setReadBigInts(true);
+    return stmt.get(sessionId);
+  },
+  delete_session(sessionId) {
+    const stmt = db.prepare("DELETE FROM fc_session WHERE id = ?;");
+    return stmt.run(sessionId);
+  },
 };
 
 function createSession(userId, res) {
-  const sessionId = randomBytes(8).readBigInt64BE();
-  const createdAt = Date.now();
-  const session = db_ops.create_session.get(sessionId, userId, createdAt);
-  
-  console.log("[SESSION] Creating session:", { sessionId: sessionId.toString(), userId, sessionFromDB: session });
+  const session = db_ops.create_session(userId);
 
   res.locals.session = session;
   res.locals.user = userId != null ? userModel.getUser(userId) : null;
@@ -54,7 +62,7 @@ function createSession(userId, res) {
 
 function deleteSession(res) {
   if (!res.locals.session) return;
-  db_ops.delete_session.run(res.locals.session.id);
+  db_ops.delete_session(res.locals.session.id);
   res.clearCookie(SESSION_COOKIE, { path: "/" });
   res.locals.session = null;
   res.locals.user = null;
@@ -78,7 +86,7 @@ function sessionHandler(req, res, next) {
   }
 
   if (sessionId != null) {
-    session = db_ops.get_session.get(sessionId);
+    session = db_ops.get_session(sessionId);
     console.log("[SESSION] Handler - DB lookup result:", session);
   }
 
