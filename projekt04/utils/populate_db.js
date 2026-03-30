@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import albums from "../models/album.js";
 import userModel from "../models/user.js";
 

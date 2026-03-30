@@ -2,12 +2,12 @@
   "name": "projekt04",
   "version": "1.0.0",
   "type": "module",
-  "description": "",
+  "description": "peah",
   "main": "index.js",
   "scripts": {
     "dev": "node index.js",
     "populate_db": "node utils/populate_db.js",
-    "generate_env": "node utils/generate_env.js > .env",
+    "generate_env": "bash utils/generate_env.sh > .env",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -16,6 +16,7 @@
   "dependencies": {
     "argon2": "^0.31.2",
     "cookie-parser": "^1.4.7",
+    "dotenv": "^17.3.1",
     "ejs": "^3.1.10",
     "express": "^5.2.1",
     "morgan": "^1.10.1",
