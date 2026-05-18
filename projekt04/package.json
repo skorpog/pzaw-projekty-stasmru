@@ -14,12 +14,12 @@
   "author": "Stanislaw Mruczkiewicz",
   "license": "ISC",
   "dependencies": {
-    "argon2": "^0.31.2",
+    "argon2": "^0.44.0",
     "cookie-parser": "^1.4.7",
-    "dotenv": "^17.3.1",
-    "ejs": "^3.1.10",
+    "dotenv": "^17.4.2",
+    "ejs": "^5.0.2",
     "express": "^5.2.1",
     "morgan": "^1.10.1",
-    "sqlite3": "^5.1.7"
+    "sqlite3": "^6.0.1"
   }
 }
