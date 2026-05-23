@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Polecenia Albumów Metalowych</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="<%= locals.theme %>-mode">
+  <div class="top-bar">
+    <div class="top-bar-left">
+      <form method="POST" action="/toggle-theme" style="display:inline;">
+        <button type="submit" class="theme-switcher"><%= locals.theme === 'light' ? 'Przejdź do trybu ciemnego' : 'Przejdź do trybu jasnego' %></button>
+      </form>
+    </div>
+    <div class="top-bar-center">
+      <a href="/" class="nav-button">Albumy</a>
+    </div>
+    <div class="auth-links">
+      <% if (locals.user) { %>
+        <span>Witaj, <%= locals.user.username %><%= locals.user.is_admin ? ' (Admin)' : '' %></span>
+        <form method="GET" action="/auth/logout" style="display:inline;">
+          <button type="submit" class="auth-button">Wyloguj</button>
+        </form>
+      <% } else { %>
+        <form method="GET" action="/auth/login" style="display:inline;">
+          <button type="submit" class="auth-button">Logowanie</button>
+        </form>
+        <form method="GET" action="/auth/signup" style="display:inline;">
+          <button type="submit" class="auth-button">Rejestracja</button>
+        </form>
+      <% } %>
+    </div>
+  </div>
+
+  <% if (locals.consent === 'none') { %>
+    <div class="cookie-consent-banner">
+      <div class="cookie-consent-content">
+        <p>Strona korzysta z cookies. Możesz zaakceptować wszystkie lub odrzucić nieobowiązkowe.</p>
+        <div class="cookie-consent-buttons">
+          <form method="POST" action="/consent" style="display:inline;">
+            <input type="hidden" name="consent" value="full">
+            <input type="hidden" name="theme" value="<%= locals.theme %>">
+            <button type="submit" class="opt-in">Akceptuję wszystkie</button>
+          </form>
+          <form method="POST" action="/consent" style="display:inline;">
+            <input type="hidden" name="consent" value="minimal">
+            <button type="submit" class="opt-out">Odrzucam nieobowiązkowe</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  <% } %>

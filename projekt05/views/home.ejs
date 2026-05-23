@@ -1,0 +1,28 @@
+<%- include('head.partial.ejs') %>
+<div class="container">
+  <h1>Polecenia Albumów Metalowych</h1>
+
+  <% if (user && user.is_admin) { %>
+    <a href="/add-album" class="add-album-link">Dodaj Album</a>
+  <% } %>
+
+  <div class="section">
+    <h2>Rekomendowane Albumy:</h2>
+    <ul>
+      <% albums.forEach(album => { %>
+        <li>
+          <a href="/album/<%= album.id %>"><%= album.artist %> - <%= album.title %></a>
+          <% if (user && user.is_admin) { %>
+            <a href="/edit-album/<%= album.id %>" class="action-button">Edytuj</a>
+            <form action="/delete-album/<%= album.id %>" method="POST" style="display:inline;">
+              <input type="submit" class="action-button" value="Usuń" onclick="return confirm('Czy na pewno chcesz usunąć ten album?')">
+            </form>
+          <% } %>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+
+  <a href="/about" class="about-link">O Stronie</a>
+</div>
+<%- include('foot.partial.ejs') %>
