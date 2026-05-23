@@ -44,12 +44,6 @@ npm run populate_db
 npm run dev
 ```
 
-Możesz też użyć klasycznego polecenia:
-
-```bash
-npm start
-```
-
 5. Otwórz w przeglądarce:
 
 ```text
