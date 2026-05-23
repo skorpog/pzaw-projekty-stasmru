@@ -44,6 +44,12 @@ npm run populate_db
 npm run dev
 ```
 
+Możesz też użyć(to jest to samo ale lepiej wyglada xd):
+
+```bash
+npm start
+```
+
 5. Otwórz w przeglądarce:
 
 ```text

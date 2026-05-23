@@ -5,6 +5,7 @@
   "description": "peah",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "dev": "node index.js",
     "populate_db": "node utils/populate_db.js",
     "generate_env": "bash utils/generate_env.sh > .env",
