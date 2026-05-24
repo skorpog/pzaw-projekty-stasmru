@@ -195,14 +195,9 @@ a:hover {
   padding: 10px 15px;
   margin: 5px 0;
   border-radius: 6px;
-  transition: all 0.3s ease;
   color: #A0A0A0;
-}
-
-.album-songs li:hover {
-  background: linear-gradient(145deg, #1f1f1f 0%, #2f2f2f 100%);
-  transform: translateX(5px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  cursor: default;
+  pointer-events: none;
 }
 
 .comments ul {
@@ -763,10 +758,8 @@ body.light-mode .album-songs li {
   background: linear-gradient(145deg, #f8f9fa 0%, #f0f2f5 100%);
   border-color: #d0d8e0;
   color: #2c3e50;
-}
-
-body.light-mode .album-songs li:hover {
-  background: linear-gradient(145deg, #e9ecef 0%, #dee2e6 100%);
+  cursor: default;
+  pointer-events: none;
 }
 
 body.light-mode .comments li {

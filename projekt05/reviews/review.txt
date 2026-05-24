@@ -1,0 +1,15 @@
+Aplikacja: Projekt 05 — Katalog Albumów Muzycznych  
+https://github.com/skorpog/pzaw-projekty-stasmru/tree/main/projekt05  
+
+Autor aplikacji: Stanisław Mruczkiewicz  
+Autor recenzji: Łukasz Leciejewski  
+
+Zalety:  
+-Czysta, zrozumiała i precyzyjna dokumentacja,  
+-Jednolity język UI,  
+-Posiada tryb ciemny oraz jasny,  
+-Wymagana funkcjonalność działa poprawnie.  
+
+Notatki:  
+-Automatycznie wypełnione dane są nierealistyczne, ponieważ próba zapisania ich ponownie rezultuje odmową (dane zostały wprowadzone siłą),  
+-Piosenki w przeglądzie albumów wyglądają jakby mogły być kliknięte, choć nie mogą.

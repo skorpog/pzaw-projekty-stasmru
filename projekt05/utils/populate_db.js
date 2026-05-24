@@ -29,7 +29,7 @@ const testAlbums = new Map([
     artist: "Iron Maiden",
     title: "The Number of the Beast",
     releaseDate: "1982-03-22",
-    description: "„The Number of the Beast” to jeden z najważniejszych albumów w historii heavy metalu i idealny punkt startowy dla początkujących fanów gatunku. To właśnie tutaj Iron Maiden pokazuje pełnię swojej mocy – melodyjne, ale energiczne gitary, charakterystyczny wokal Bruce’a Dickinsona i epickie, opowiadające historie teksty. Album jest doskonałym wprowadzeniem do klasycznego brzmienia metalu: szybkie, chwytliwe riffy i potężne refreny sprawiają, że łatwo się w niego wciągnąć. Utwory takie jak “Run to the Hills” czy “The Number of the Beast” są ponadczasowe i natychmiast rozpoznawalne, a epicki finał “Hallowed Be Thy Name” pokazuje emocjonalną głębię zespołu. Dzięki temu albumowi początkujący słuchacz może zrozumieć, dlaczego Iron Maiden uznawani są za legendę i jak metal może łączyć siłę, melodię i teatralny klimat w jedną, niezapomnianą całość.",
+    description: "Klasyczny album Iron Maiden z epickimi riffami, ikonowymi hitami i charakterystycznym wokalem Bruce’a Dickinsona. Idealny punkt startowy dla fanów heavy metalu.",
     totalDuration: "39:11",
     spotifyLink: "https://open.spotify.com/album/5S3gls8Kjn8KVmqlIDEBbO?si=d3b4715f87724a2f",
     songs: [
@@ -47,7 +47,7 @@ const testAlbums = new Map([
     artist: "Death",
     title: "Symbolic",
     releaseDate: "1995-03-21",
-    description: "„Symbolic” to jedno z najważniejszych dzieł zespołu Death i zarazem szczytowe osiągnięcie technicznego death metalu. Chuck Schuldiner połączył brutalność gatunku z melodyjnością i filozoficzną głębią tekstów, tworząc album pełen emocji i przemyśleń. Brzmienie jest krystalicznie czyste, a każdy utwór prezentuje mistrzowskie umiejętności muzyków. Kompozycje takie jak “Crystal Mountain” czy “Symbolic” pokazują, jak złożony i jednocześnie przystępny może być metal ekstremalny. To album pełen energii, technicznej precyzji i refleksji nad ludzką naturą – klasyk, który wciąż inspiruje całe pokolenia muzyków.",
+    description: "Techniczny i emocjonalny album Death, łączący brutalność z melodyjnością. Symbolic pokazuje, dlaczego Chuck Schuldiner jest jedną z najważniejszych postaci metalu.",
     totalDuration: "50:15",
     spotifyLink: "https://open.spotify.com/album/1QgFthItpbxvMXlgGjvhBR?si=1Vvy52p8QQGhQI50Ci8czg",
     songs: [
@@ -138,8 +138,29 @@ async function seed() {
   }
 
   let user = await userModel.createUser("student", "changeme");
+// poprawka Lukasza1
+  for (const albumData of testAlbums.values()) {    const validationErrors = albums.validateAlbumData(albumData);
+    if (validationErrors.length > 0) {
+      throw new Error(`Invalid seed album ${albumData.artist} - ${albumData.title}: ${validationErrors.join("; ")}`);
+    }
 
-  for (const albumData of testAlbums.values()) {
+    const existingAlbum = albums.getAlbum(albumData.artist);
+    if (existingAlbum && existingAlbum.title === albumData.title) {
+      const shouldUpdate =
+        existingAlbum.releaseDate !== albumData.releaseDate ||
+        existingAlbum.description !== albumData.description ||
+        existingAlbum.totalDuration !== albumData.totalDuration ||
+        existingAlbum.spotifyLink !== albumData.spotifyLink ||
+        JSON.stringify(existingAlbum.songs.map((song) => song.title)) !== JSON.stringify(albumData.songs);
+
+      if (shouldUpdate) {
+        albums.updateAlbum(existingAlbum.id, { ...albumData, songs: [...albumData.songs] });
+        console.log("Updated album:", albumData.artist, "-", albumData.title);
+      } else {
+        console.log("Album already exists and is up to date:", albumData.artist, "-", albumData.title);
+      }
+      continue;
+    }
     if (!albums.hasAlbumByArtistAndTitle(albumData.artist, albumData.title)) {
       const album = albums.addAlbum(albumData, null);
       console.log("Created album:", album);
