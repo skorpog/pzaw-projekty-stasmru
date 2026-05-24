@@ -2,8 +2,8 @@ import 'dotenv/config';
 import albums from "../models/album.js";
 import userModel from "../models/user.js";
 
-const testAlbums = [
-  {
+const testAlbums = new Map([
+  ["Metallica", {
     artist: "Metallica",
     title: "Black Album",
     releaseDate: "1991-08-12",
@@ -24,8 +24,8 @@ const testAlbums = [
       "My Friend of Misery",
       "The Struggle Within"
     ]
-  },
-  {
+  }],
+  ["Iron Maiden", {
     artist: "Iron Maiden",
     title: "The Number of the Beast",
     releaseDate: "1982-03-22",
@@ -42,8 +42,8 @@ const testAlbums = [
       "Gangland",
       "Hallowed Be Thy Name"
     ]
-  },
-  {
+  }],
+  ["Death", {
     artist: "Death",
     title: "Symbolic",
     releaseDate: "1995-03-21",
@@ -61,8 +61,8 @@ const testAlbums = [
       "Misanthrope",
       "Perennial Quest"
     ]
-  },
-  {
+  }],
+  ["Trivium", {
     artist: "Trivium",
     title: "Ascendancy",
     releaseDate: "2005-05-09",
@@ -83,8 +83,8 @@ const testAlbums = [
       "Departure",
       "Declaration"
     ]
-  },
-  {
+  }],
+  ["Sepultura", {
     artist: "Sepultura",
     title: "Chaos A.D.",
     releaseDate: "1993-09-02",
@@ -105,26 +105,26 @@ const testAlbums = [
       "The Hunt",
       "Clenched Fist"
     ]
-  },
-  {
-  artist: "Emperor",
-  title: "Anthems to the Welkin at Dusk",
-  releaseDate: "1997-07-08",
-  description: "Ten album łączy surowość black metalu z symfonicznym rozmachem. Teksty skupiają się na kosmicznych, mistycznych i filozoficznych wizjach, a całość brzmi jak zimna, monumentalna podróż przez nocne niebo. To jeden z najbardziej przełomowych albumów w historii gatunku, pokazujący jak ekstremalna muzyka może być jednocześnie brutalna i wyrafinowana.",
-  totalDuration: "51:51",
-  spotifyLink: "https://open.spotify.com/album/7MOaD3Y4SmevciBliFGqiQ?si=MU52KuYPTquDd6hz3Kjx5g",
-  songs: [
-    "Alsvartr (The Oath)",
-    "Ye Entrancemperium",
-    "Thus Spake the Nightspirit",
-    "Ensorcelled by Khaos",
-    "The Loss and Curse of Reverence",
-    "The Acclamation of Bonds",
-    "With Strength I Burn",
-    "The Wanderer"
-  ]
-}
-];
+  }],
+  ["Emperor", {
+    artist: "Emperor",
+    title: "Anthems to the Welkin at Dusk",
+    releaseDate: "1997-07-08",
+    description: "Ten album łączy surowość black metalu z symfonicznym rozmachem. Teksty skupiają się na kosmicznych, mistycznych i filozoficznych wizjach, a całość brzmi jak zimna, monumentalna podróż przez nocne niebo. To jeden z najbardziej przełomowych albumów w historii gatunku, pokazujący jak ekstremalna muzyka może być jednocześnie brutalna i wyrafinowana.",
+    totalDuration: "51:51",
+    spotifyLink: "https://open.spotify.com/album/7MOaD3Y4SmevciBliFGqiQ?si=MU52KuYPTquDd6hz3Kjx5g",
+    songs: [
+      "Alsvartr (The Oath)",
+      "Ye Entrancemperium",
+      "Thus Spake the Nightspirit",
+      "Ensorcelled by Khaos",
+      "The Loss and Curse of Reverence",
+      "The Acclamation of Bonds",
+      "With Strength I Burn",
+      "The Wanderer"
+    ]
+  }]
+]);
 
 console.log("Populating db...");
 
@@ -139,7 +139,7 @@ async function seed() {
 
   let user = await userModel.createUser("student", "changeme");
 
-  for (const albumData of testAlbums) {
+  for (const albumData of testAlbums.values()) {
     if (!albums.hasAlbumByArtistAndTitle(albumData.artist, albumData.title)) {
       const album = albums.addAlbum(albumData, null);
       console.log("Created album:", album);

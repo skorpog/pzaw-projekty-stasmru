@@ -1,0 +1,31 @@
+Oliwier Boka
+24.05.2026 godzina 15.09
+REVIEW PROJEKTU 
+
+- poprawny import oraz setup serwera.
+- dobre zarządzanie odbieraniem żądań użytkowników oraz przekierowaniami oraz odbieraniem danych wysyłanych metodą post
+- przejrzysty kod
+- pobieranie danych z req.body robione jest w wydajny sposób.
+- dobry przechwyt errorów.
+- README.md dobrze objaśniony, zawiera wszystkie potrzebne informacje: opis, funkcje,  wymagania, konfiguracja, obsługiwane ścieżki oraz konta testowe.
+
+
+UWAGI:
+
+*populate_db.js*:
+
+Zmienić sposób przechowywania danych.
+
+zamiast tablicy testAlbums z obiektami js, których pierwszą własnością jest artist , lepiej by było gdyby testAlbums był odwołaniem do Map, w którym artist zamiast własnością przechowywanych obiektów będzie kluczem wskazującym na ten obiekt
+
+Przykład:
+const testAlbums = new Map();
+testAlbums.set(‘Metallica’, {
+    artist: "Metallica",
+    title: "Black Album",
+    releaseDate: "1991-08-12",
+    description:”",
+    totalDuration: "62:27",
+    spotifyLink: “”,
+    songs: ["Enter Sandman", "Sad But True"]
+  }) 
