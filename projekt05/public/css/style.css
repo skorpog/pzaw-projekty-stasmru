@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Metal+Mania&family=Black+Ops+One&display=swap');
 
+/* =========================
+   RESET I PODSTAWOWE USTAWIENIA
+   ========================= */
+
 * {
   margin: 0;
   padding: 0;
@@ -28,11 +32,19 @@ body::before {
   z-index: -1;
 }
 
+/* =========================
+   LAYOUT I KONTAJNER
+   ========================= */
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
 }
+
+/* =========================
+   TYPOGRAFIA
+   ========================= */
 
 h1 {
   font-family: 'Metal Mania', cursive;
@@ -67,6 +79,10 @@ h3 {
   text-shadow: 0 0 10px rgba(168, 168, 168, 0.5);
 }
 
+/* =========================
+   SEKCJE I KARTY
+   ========================= */
+
 .section {
   background: linear-gradient(145deg, rgba(20, 20, 20, 0.9) 0%, rgba(40, 40, 40, 0.9) 100%);
   border: 1px solid #555;
@@ -86,6 +102,10 @@ h3 {
   height: 2px;
   background: linear-gradient(90deg, transparent 0%, #A8A8A8 50%, transparent 100%);
 }
+
+/* =========================
+   LISTY I KARTY ZAWARTOŚCI
+   ========================= */
 
 ul {
   list-style-type: none;
@@ -200,6 +220,10 @@ a:hover {
   pointer-events: none;
 }
 
+/* =========================
+   KOMENTARZE
+   ========================= */
+
 .comments ul {
   display: block;
   gap: 10px;
@@ -233,6 +257,10 @@ a:hover {
   text-shadow: 0 0 10px rgba(192, 192, 192, 0.5);
   border-bottom-color: #E0E0E0;
 }
+
+/* =========================
+   FORMY I POLA WEJŚCIA
+   ========================= */
 
 form {
   margin-top: 20px;
@@ -277,6 +305,10 @@ textarea {
   resize: vertical;
   line-height: 1.5;
 }
+
+/* =========================
+   PRZYCISKI I LINKI AKCYJNE
+   ========================= */
 
 .back-link,
 .add-album-link,
@@ -350,6 +382,10 @@ input[type="submit"]:hover {
   transform: translateY(-3px);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6), 0 0 20px rgba(168, 168, 168, 0.4);
 }
+
+/* =========================
+   BŁĘDY I AUTORYZACJA
+   ========================= */
 
 .errors {
   background: linear-gradient(145deg, rgba(139, 0, 0, 0.3) 0%, rgba(178, 34, 34, 0.3) 100%);
@@ -450,6 +486,10 @@ li form {
   margin-top: 5px;
   font-size: 0.9em;
 }
+
+/* =========================
+   RESPONSYWNOŚĆ
+   ========================= */
 
 @media (max-width: 768px) {
   .top-bar {
@@ -558,6 +598,10 @@ li form {
   }
 }
 
+/* =========================
+   ZMIENNE I TOP BAR
+   ========================= */
+
 :root {
   --bg: #070707;
   --bg2: #1a1a1a;
@@ -653,6 +697,10 @@ li form {
   margin: 0;
   align-items: center;
 }
+
+/* =========================
+   TRYB JASNY
+   ========================= */
 
 body.light-mode {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 50%, #f1f3f5 100%);
@@ -887,6 +935,10 @@ body.light-mode .auth-form a:hover {
 body.light-mode .error {
   color: #c92a2a;
 }
+
+/* =========================
+   BANER COOKIE
+   ========================= */
 
 .cookie-consent-banner {
   position: fixed;
